@@ -61,3 +61,37 @@ var johnBmi = johnMass / (johnHeight * johnHeight);
 var isMarkBmiHigher = markBmi > johnBmi;
 
 console.log("Is Mark's BMI higher than John's? " +  isMarkBmiHigher);
+
+/*
+    *******************************
+        Truthy and Falsy values
+    *******************************
+    
+    Falsy: undefined, null, 0, '', not a number. All these values will be taken as false
+    Truthy: all NOT falsy values
+*/
+var height;
+
+if(height){
+    console.log("Shouldn't go in here!"); 
+} else {
+    console.log("Proving Falsy value"); 
+}
+
+/*
+    *******************************
+          Equality Operators
+    *******************************
+*/
+height = 23;
+
+if(height == "23"){
+    //JS converts the String '23' to a number, and then compares
+    console.log("The operator == does type coercion"); 
+}
+
+if(height === "23"){
+    //Comparing a number with a String, which results in a False value
+    //BEST PRACTICE: always use the === operator to avoid confusion
+    console.log("The operator === does not do type coercion"); 
+}
