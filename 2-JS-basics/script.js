@@ -122,6 +122,7 @@ if (johnAverage === mikeAverage && johnAverage == maryAverage){
     ****************************
 */
 
+//Funtion Declaration
 //Notice how there's no return type even thouhg this function is returning a value
 function calculateAge(birthYear){
     return 2018 - birthYear;
@@ -137,3 +138,17 @@ function calculateAndPrintAge(birthYear){
 }
 
 calculateAndPrintAge(1990);
+
+/*
+    ***************************************************
+             FUNCTION STATEMENTS AND EXPRESSIONS 
+    ***************************************************
+*/
+
+//Function Expressions: they take parameters and produce a result 
+var calculateAgeExp = function(birthYear){
+    return 2018 - birthYear;
+}
+console.log( calculateAgeExp(2000) );
+
+//Statements: they don't produce an immediate result (returns something). Example: if(true)
