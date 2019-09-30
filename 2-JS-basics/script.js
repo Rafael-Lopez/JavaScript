@@ -152,3 +152,20 @@ var calculateAgeExp = function(birthYear){
 console.log( calculateAgeExp(2000) );
 
 //Statements: they don't produce an immediate result (returns something). Example: if(true)
+
+/*
+    ************************
+             ARRAYS 
+    ************************
+*/
+
+//Most used way to create arrays
+var names = ["John", "Mark", "Jane"];
+var years = new Array(1990, 1969, 1948);
+
+console.log(names[0]);
+
+//Different data types
+var john = ["John", "Smith", 1990, "Teacher", false];
+john.push("Blue");
+console.log(john);
