@@ -254,3 +254,37 @@ var john = {
 
 john.calcAge();
 console.log(john);
+
+/*
+    ****************************
+        CODING CHALLENGE 4 
+    ****************************
+*/
+
+var john = { 
+    name: "John Smith",
+    mass: 70,
+    height: 1.70,
+    calcBmi: function(){
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+};
+
+var mark = { 
+    name: "Mark Right",
+    mass: 75,
+    height: 1.75,
+    calcBmi: function(){
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+};
+
+if (john.calcBmi() > mark.calcBmi()){
+    console.log(john.name + " has the highest BMI: " + john.bmi);
+} else if (mark.bmi > john.bmi){
+    console.log(mark.name + " has the highest BMI: " + john.bmi);
+} else {
+    console.log("They have the same BMI");
+}
