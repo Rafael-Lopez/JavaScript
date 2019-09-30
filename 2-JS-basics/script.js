@@ -115,3 +115,25 @@ if (johnAverage === mikeAverage && johnAverage == maryAverage){
 } else {
     console.log("Mary's team has the highest average score: " + maryAverage);
 }
+
+/*
+    ****************************
+             FUNCTIONS 
+    ****************************
+*/
+
+//Notice how there's no return type even thouhg this function is returning a value
+function calculateAge(birthYear){
+    return 2018 - birthYear;
+}
+
+var ageJohn = calculateAge(1990);
+console.log(ageJohn);
+
+//Functions don't have to return something all the time
+function calculateAndPrintAge(birthYear){
+    var ageSam = calculateAge(1990);
+    console.log(ageSam);
+}
+
+calculateAndPrintAge(1990);
