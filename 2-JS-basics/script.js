@@ -288,3 +288,85 @@ if (john.calcBmi() > mark.calcBmi()){
 } else {
     console.log("They have the same BMI");
 }
+
+/*
+    ****************************
+        CODING CHALLENGE 5 
+    ****************************
+*/
+
+var john = {
+    name: "John Smith",
+    bills: [124, 48, 268, 180, 42],               
+    calcTips: function(){
+        this.tips = [];
+        this.finalAmounts = [];
+        
+        for(var index = 0; index < this.bills.length; index++){
+            var bill = this.bills[index];
+            var tip;
+
+            if(bill < 50){
+                tip = bill * 0.2;
+            } else if (bill >= 50 && bill <= 200){
+                tip = bill * 0.15;
+            } else {
+                tip = bill * 0.1;
+            }
+            
+            this.tips[index] = tip; 
+            this.finalAmounts[index] = bill + tip;
+        }
+
+    }
+};
+
+var mark = {
+    name: "Mark Lotto",
+    bills: [77, 375, 110, 45],              
+    calcTips: function(){
+        this.tips = [];
+        this.finalAmounts = [];
+            
+        for(var index = 0; index < this.bills.length; index++){
+            var bill = this.bills[index];
+            var tip;
+
+            if(bill < 100){
+                tip = bill * 0.2;
+            } else if (bill >= 100 && bill <= 300){
+                tip = bill * 0.1;
+            } else {
+                tip = bill * 0.25;
+            }
+            
+            this.tips[index] = tip; 
+            this.finalAmounts[index] = bill + tip;
+        }
+
+    }
+};
+
+function calculateTipAvergae(tips){
+    var total = 0;
+    
+    for(var i = 0; i < tips.length; i++){
+        total += tips[i];
+    }
+    
+    return total / tips.length;
+}
+
+john.calcTips();
+mark.calcTips();
+john.average = calculateTipAvergae(john.tips);
+mark.average = calculateTipAvergae(mark.tips);
+console.log(john, mark);
+
+if(john.average > mark.average){
+    console.log("John's family paid the highest tips on average");
+} else {
+    console.log("Mark's family paid the highest tips on average");
+}
+
+
