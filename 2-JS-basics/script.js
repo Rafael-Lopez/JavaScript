@@ -232,3 +232,25 @@ jane.firstName = "Jane";
 jane.birthYear = 1968;
 jane["lastName"] = "Smith";
 console.log(jane);
+
+/*
+    ******************************
+        Objects and methods 
+    ******************************
+*/
+
+//Object literal
+var john = { 
+    firstName: "John",
+    lastName: "Smith",
+    birthYear: 1990,
+    family: ["Jane", "Mark", "Bob"],
+    job: "Teacher",
+    isMarried: false,
+    calcAge: function(){
+        this.age = 2018 - this.birthYear;
+    }
+};
+
+john.calcAge();
+console.log(john);
