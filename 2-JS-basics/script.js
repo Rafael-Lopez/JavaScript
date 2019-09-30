@@ -200,3 +200,35 @@ var paidAmounts = [tips[0] + amountA, tips[1] + amountB, tips[2] + amountC];
 
 console.log(tips);
 console.log(paidAmounts);
+
+/*
+    ******************************
+        Objects and properties 
+    ******************************
+*/
+
+//Object literal
+var john = { 
+    firstName: "John",
+    lastName: "Smith",
+    birthYear: 1990,
+    family: ["Jane", "Mark", "Bob"],
+    job: "Teacher",
+    isMarried: false
+};
+console.log(john);
+//Using dot notation to retrieve elements from the object
+console.log(john.firstName);
+//Using brackets to retrieve elements from the object
+console.log(john["firstName"]);
+
+john.job = "Designer";
+john["isMarried"] = true;
+console.log(john);
+
+// new Object syntax
+var jane = new Object();
+jane.firstName = "Jane";
+jane.birthYear = 1968;
+jane["lastName"] = "Smith";
+console.log(jane);
