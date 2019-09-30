@@ -22,6 +22,7 @@ console.log(job);
 * Variable mutation and type coercion
 */
 
+/*
 //Type coercion
 var firstName = "John";
 var age = 28;
@@ -42,3 +43,21 @@ alert(firstName + " is a " + age + " years old " + job + ". Is he married? " + i
 
 var lastName = prompt("What is hist last name?");
 console.log(firstName + " " + lastName);
+*/
+
+/*
+    ****************************
+        CODING CHALLENGE 1 
+    ****************************
+*/
+
+var markMass = 75;
+var johnMass = 70;
+var markHeight = 1.75;
+var johnHeight = 1.70;
+var markBmi = markMass / (markHeight * markHeight);
+var johnBmi = johnMass / (johnHeight * johnHeight);
+
+var isMarkBmiHigher = markBmi > johnBmi;
+
+console.log("Is Mark's BMI higher than John's? " +  isMarkBmiHigher);
