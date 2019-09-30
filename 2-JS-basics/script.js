@@ -95,3 +95,23 @@ if(height === "23"){
     //BEST PRACTICE: always use the === operator to avoid confusion
     console.log("The operator === does not do type coercion"); 
 }
+
+/*
+    ****************************
+        CODING CHALLENGE 2 
+    ****************************
+*/
+
+var johnAverage = (89 + 120 + 103) / 3;
+var mikeAverage = (116 + 94 + 123) / 3;
+var maryAverage = (97 + 134 + 105) / 3;
+
+if (johnAverage === mikeAverage && johnAverage == maryAverage){
+    console.log("All teams have the same average score: " + johnAverage);
+} else if (johnAverage > mikeAverage && johnAverage > maryAverage){
+    console.log("John's team has the highest average score: " + johnAverage);
+} else if (mikeAverage > johnAverage && mikeAverage > maryAverage) {
+    console.log("Mike's team has the highest average score: " + mikeAverage);
+} else {
+    console.log("Mary's team has the highest average score: " + maryAverage);
+}
