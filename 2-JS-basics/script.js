@@ -169,3 +169,34 @@ console.log(names[0]);
 var john = ["John", "Smith", 1990, "Teacher", false];
 john.push("Blue");
 console.log(john);
+
+
+/*
+    ****************************
+        CODING CHALLENGE 3 
+    ****************************
+*/
+
+function calculateTip(billAmount){
+    var tip;
+    
+    if(billAmount < 50){
+        tip = billAmount * 0.2;
+    } else if (billAmount >= 50 && billAmount <= 200){
+        tip = billAmount * 0.15;
+    } else {
+        tip = billAmount * 0.1;
+    }
+    
+    return tip;
+}
+
+var amountA = 124;
+var amountB = 48;
+var amountC = 268;
+
+var tips = [calculateTip(amountA), calculateTip(amountB), calculateTip(amountC)];
+var paidAmounts = [tips[0] + amountA, tips[1] + amountB, tips[2] + amountC];
+
+console.log(tips);
+console.log(paidAmounts);
