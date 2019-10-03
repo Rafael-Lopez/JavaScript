@@ -42,19 +42,37 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
         roundScore += dice;
         document.querySelector("#current-" + activePlayer).textContent = roundScore;
     } else {
-        roundScore = 0;    
-        activePlayer = activePlayer === 0 ? 1 : 0; 
-        document.getElementById("current-0").textContent = "0";
-        document.getElementById("current-1").textContent = "0";
-        
-        //Manipulating HTML classes. Remember
-        document.querySelector(".player-0-panel").classList.toggle("active");
-        document.querySelector(".player-1-panel").classList.toggle("active");
-        
-        //You can also add or remove classes manually
-        //document.querySelector(".player-1-panel").classList.remove("active");
-        //document.querySelector(".player-1-panel").classList.add("active");
-        
-        document.querySelector(".dice").style.display = "none";
+        nextPlayer();
     }
 });
+
+document.querySelector(".btn-hold").addEventListener("click", function() {
+    score[activePlayer] += roundScore;
+    document.querySelector("#score-" + activePlayer).textContent = score[activePlayer];
+    
+    if( score[activePlayer] >= 100) {
+        document.getElementById("name-" + activePlayer).textContent = "Winner!";
+        document.querySelector(".dice").style.display = "none";
+        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+    } else {
+        nextPlayer();
+    }      
+});
+                                 
+function nextPlayer() {
+    roundScore = 0;    
+    activePlayer = activePlayer === 0 ? 1 : 0; 
+    document.getElementById("current-0").textContent = "0";
+    document.getElementById("current-1").textContent = "0";
+
+    //Manipulating HTML classes. Remember
+    document.querySelector(".player-0-panel").classList.toggle("active");
+    document.querySelector(".player-1-panel").classList.toggle("active");
+
+    //You can also add or remove classes manually
+    //document.querySelector(".player-1-panel").classList.remove("active");
+    //document.querySelector(".player-1-panel").classList.add("active");
+
+    document.querySelector(".dice").style.display = "none";
+}
