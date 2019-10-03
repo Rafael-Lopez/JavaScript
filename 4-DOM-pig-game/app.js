@@ -16,19 +16,21 @@ init();
 //Using annonymus function
 document.querySelector(".btn-roll").addEventListener("click", function() {
     if (gamePlaying) {
-        var dice = Math.floor(Math.random() * 6) + 1;
-        var diceDOM = document.querySelector(".dice");
-
-        diceDOM.style.display = "block";
-        diceDOM.src = "dice-" + dice + ".png";
+        var dice1 = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
         
-        if(dice === 6 && lastDice === 6) {
+        document.getElementById("dice-1").style.display = "block";
+        document.getElementById("dice-2").style.display = "block";
+        document.getElementById("dice-1").src = "dice-" + dice1 + ".png";
+        document.getElementById("dice-2").src = "dice-" + dice2 + ".png";
+        
+        /*if(dice === 6 && lastDice === 6) {
             score[activePlayer] = 0;
             document.getElementById("score-" + activePlayer).textContent = "0";
             nextPlayer();
         }
-        else if(dice !== 1) {
-            roundScore += dice;
+        else */if(dice1 !== 1 && dice2 !== 1) {
+            roundScore += dice1 + dice2;
             document.querySelector("#current-" + activePlayer).textContent = roundScore;
         } else {
             nextPlayer();
@@ -58,7 +60,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         
         if( score[activePlayer] >= winningScore) {
             document.getElementById("name-" + activePlayer).textContent = "Winner!";
-            document.querySelector(".dice").style.display = "none";
+            document.getElementById("dice-1").style.display = "none";
+            document.getElementById("dice-2").style.display = "none";
             document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
             document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
             gamePlaying = false;
@@ -83,7 +86,8 @@ function nextPlayer(){
     //document.querySelector(".player-1-panel").classList.remove("active");
     //document.querySelector(".player-1-panel").classList.add("active");
 
-    document.querySelector(".dice").style.display = "none";
+    document.getElementById("dice-1").style.display = "none";
+    document.getElementById("dice-2").style.display = "none";
 }
 
 document.querySelector(".btn-new").addEventListener("click", init);
@@ -102,7 +106,8 @@ function init(){
     //document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
 
     //Like in CSS, to reference an element by its class, you need to use the .
-    document.querySelector(".dice").style.display = "none";
+    document.getElementById("dice-1").style.display = "none";
+    document.getElementById("dice-2").style.display = "none";
     
     //getElementById is a bit faster tha querySelector, but it only works for ID's. Also, you don't need to use the CSS style to refer to the ID. Therefore, no # is needed.
     document.getElementById("score-0").textContent = 0;
