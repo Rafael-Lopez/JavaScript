@@ -9,17 +9,32 @@ GAME RULES:
 
 */
 
-var score, roundScore, activePlayer, dice;
+var score, roundScore, activePlayer;
 
 score = [0, 0];
 roundScore = 0;
 activePlayer = 0;
-dice = Math.floor(Math.random() * 6) + 1;
+
 
 //Like in CSS, to reference an element by its ID, you need to add the #
-document.querySelector("#current-" + activePlayer).textContent = dice;
+//document.querySelector("#current-" + activePlayer).textContent = dice;
 //Another way to change the text would be to use the innerHTML method, which takes HTML code in the form of a String
 //document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
 
+//getElementById is a bit faster tha querySelector, but it only works for ID's. Also, you don't need to use the CSS style to refer to the ID. Therefore, no # is needed.
+document.getElementById("score-0").textContent = 0;
+document.getElementById("score-1").textContent = 0;
+document.getElementById("current-0").textContent = 0;
+document.getElementById("current-1").textContent = 0;
+
 //Like in CSS, to reference an element by its class, you need to use the .
 document.querySelector(".dice").style.display = "none";
+
+//Using annonymus function
+document.querySelector(".btn-roll").addEventListener("click", function() {
+    var dice = Math.floor(Math.random() * 6) + 1;
+    var diceDOM = document.querySelector(".dice");
+    
+    diceDOM.style.display = "block";
+    diceDOM.src = "dice-" + dice + ".png";
+});
