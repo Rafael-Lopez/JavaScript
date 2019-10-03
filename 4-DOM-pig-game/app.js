@@ -9,38 +9,44 @@ GAME RULES:
 
 */
 
-var score, roundScore, activePlayer;
+var score, roundScore, activePlayer, gamePlaying;
 
 init();
 
 //Using annonymus function
 document.querySelector(".btn-roll").addEventListener("click", function() {
-    var dice = Math.floor(Math.random() * 6) + 1;
-    var diceDOM = document.querySelector(".dice");
-    
-    diceDOM.style.display = "block";
-    diceDOM.src = "dice-" + dice + ".png";
-    
-    if(dice !== 1) {
-        roundScore += dice;
-        document.querySelector("#current-" + activePlayer).textContent = roundScore;
-    } else {
-        nextPlayer();
+    if (gamePlaying) {
+        var dice = Math.floor(Math.random() * 6) + 1;
+        var diceDOM = document.querySelector(".dice");
+
+        diceDOM.style.display = "block";
+        diceDOM.src = "dice-" + dice + ".png";
+
+        if(dice !== 1) {
+            roundScore += dice;
+            document.querySelector("#current-" + activePlayer).textContent = roundScore;
+        } else {
+            nextPlayer();
+        }
     }
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
-    score[activePlayer] += roundScore;
-    document.querySelector("#score-" + activePlayer).textContent = score[activePlayer];
     
-    if( score[activePlayer] >= 100) {
-        document.getElementById("name-" + activePlayer).textContent = "Winner!";
-        document.querySelector(".dice").style.display = "none";
-        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
-        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
-    } else {
-        nextPlayer();
-    }      
+    if (gamePlaying) {
+        score[activePlayer] += roundScore;
+        document.querySelector("#score-" + activePlayer).textContent = score[activePlayer];
+
+        if( score[activePlayer] >= 100) {
+            document.getElementById("name-" + activePlayer).textContent = "Winner!";
+            document.querySelector(".dice").style.display = "none";
+            document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+            document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+            gamePlaying = false;
+        } else {
+            nextPlayer();
+        } 
+    }
 });
                                  
 function nextPlayer(){
@@ -66,6 +72,7 @@ function init(){
     score = [0, 0];
     roundScore = 0;
     activePlayer = 0;
+    gamePlaying = true;
 
 
     //Like in CSS, to reference an element by its ID, you need to add the #
