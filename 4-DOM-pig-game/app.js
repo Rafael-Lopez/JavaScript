@@ -37,4 +37,24 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     
     diceDOM.style.display = "block";
     diceDOM.src = "dice-" + dice + ".png";
+    
+    if(dice !== 1) {
+        roundScore += dice;
+        document.querySelector("#current-" + activePlayer).textContent = roundScore;
+    } else {
+        roundScore = 0;    
+        activePlayer = activePlayer === 0 ? 1 : 0; 
+        document.getElementById("current-0").textContent = "0";
+        document.getElementById("current-1").textContent = "0";
+        
+        //Manipulating HTML classes. Remember
+        document.querySelector(".player-0-panel").classList.toggle("active");
+        document.querySelector(".player-1-panel").classList.toggle("active");
+        
+        //You can also add or remove classes manually
+        //document.querySelector(".player-1-panel").classList.remove("active");
+        //document.querySelector(".player-1-panel").classList.add("active");
+        
+        document.querySelector(".dice").style.display = "none";
+    }
 });
