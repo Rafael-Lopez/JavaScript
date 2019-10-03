@@ -11,24 +11,7 @@ GAME RULES:
 
 var score, roundScore, activePlayer;
 
-score = [0, 0];
-roundScore = 0;
-activePlayer = 0;
-
-
-//Like in CSS, to reference an element by its ID, you need to add the #
-//document.querySelector("#current-" + activePlayer).textContent = dice;
-//Another way to change the text would be to use the innerHTML method, which takes HTML code in the form of a String
-//document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
-
-//getElementById is a bit faster tha querySelector, but it only works for ID's. Also, you don't need to use the CSS style to refer to the ID. Therefore, no # is needed.
-document.getElementById("score-0").textContent = 0;
-document.getElementById("score-1").textContent = 0;
-document.getElementById("current-0").textContent = 0;
-document.getElementById("current-1").textContent = 0;
-
-//Like in CSS, to reference an element by its class, you need to use the .
-document.querySelector(".dice").style.display = "none";
+init();
 
 //Using annonymus function
 document.querySelector(".btn-roll").addEventListener("click", function() {
@@ -60,7 +43,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     }      
 });
                                  
-function nextPlayer() {
+function nextPlayer(){
     roundScore = 0;    
     activePlayer = activePlayer === 0 ? 1 : 0; 
     document.getElementById("current-0").textContent = "0";
@@ -75,4 +58,34 @@ function nextPlayer() {
     //document.querySelector(".player-1-panel").classList.add("active");
 
     document.querySelector(".dice").style.display = "none";
+}
+
+document.querySelector(".btn-new").addEventListener("click", init);
+
+function init(){
+    score = [0, 0];
+    roundScore = 0;
+    activePlayer = 0;
+
+
+    //Like in CSS, to reference an element by its ID, you need to add the #
+    //document.querySelector("#current-" + activePlayer).textContent = dice;
+    //Another way to change the text would be to use the innerHTML method, which takes HTML code in the form of a String
+    //document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
+
+    //Like in CSS, to reference an element by its class, you need to use the .
+    document.querySelector(".dice").style.display = "none";
+    
+    //getElementById is a bit faster tha querySelector, but it only works for ID's. Also, you don't need to use the CSS style to refer to the ID. Therefore, no # is needed.
+    document.getElementById("score-0").textContent = 0;
+    document.getElementById("score-1").textContent = 0;
+    document.getElementById("current-0").textContent = 0;
+    document.getElementById("current-1").textContent = 0;
+    document.getElementById("name-0").textContent = "Player1";
+    document.getElementById("name-1").textContent = "Player2";
+    document.querySelector(".player-0-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("winner");
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.remove("active");
+    document.querySelector(".player-0-panel").classList.add("active");
 }
