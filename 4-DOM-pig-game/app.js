@@ -16,4 +16,10 @@ roundScore = 0;
 activePlayer = 0;
 dice = Math.floor(Math.random() * 6) + 1;
 
-console.log(dice);
+//Like in CSS, to reference an element by its ID, you need to add the #
+document.querySelector("#current-" + activePlayer).textContent = dice;
+//Another way to change the text would be to use the innerHTML method, which takes HTML code in the form of a String
+//document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
+
+//Like in CSS, to reference an element by its class, you need to use the .
+document.querySelector(".dice").style.display = "none";
