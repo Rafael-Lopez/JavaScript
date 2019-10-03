@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var score, roundScore, activePlayer, gamePlaying;
+var score, roundScore, activePlayer, gamePlaying, lastDice;
 
 init();
 
@@ -21,23 +21,42 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 
         diceDOM.style.display = "block";
         diceDOM.src = "dice-" + dice + ".png";
-
-        if(dice !== 1) {
+        
+        if(dice === 6 && lastDice === 6) {
+            score[activePlayer] = 0;
+            document.getElementById("score-" + activePlayer).textContent = "0";
+            nextPlayer();
+        }
+        else if(dice !== 1) {
             roundScore += dice;
             document.querySelector("#current-" + activePlayer).textContent = roundScore;
         } else {
             nextPlayer();
         }
+        
+        lastDice = dice;
     }
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
     
     if (gamePlaying) {
+        
         score[activePlayer] += roundScore;
         document.querySelector("#score-" + activePlayer).textContent = score[activePlayer];
 
-        if( score[activePlayer] >= 100) {
+        var input = document.querySelector(".final-score").value;
+        var winningScore;
+        
+        //UNDEFINED, 0, null or empty strings are COERCED to False
+        //ANything else is COERCED to True
+        if(input){
+            winningScore = input;
+        } else {
+            winningScore =100
+        }
+        
+        if( score[activePlayer] >= winningScore) {
             document.getElementById("name-" + activePlayer).textContent = "Winner!";
             document.querySelector(".dice").style.display = "none";
             document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
@@ -50,7 +69,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
 });
                                  
 function nextPlayer(){
-    roundScore = 0;    
+    roundScore = 0;
+    numSixRolled = 0;
     activePlayer = activePlayer === 0 ? 1 : 0; 
     document.getElementById("current-0").textContent = "0";
     document.getElementById("current-1").textContent = "0";
@@ -73,6 +93,7 @@ function init(){
     roundScore = 0;
     activePlayer = 0;
     gamePlaying = true;
+    numSixRolled = 0;
 
 
     //Like in CSS, to reference an element by its ID, you need to add the #
