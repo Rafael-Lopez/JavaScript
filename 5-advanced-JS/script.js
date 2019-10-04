@@ -35,3 +35,26 @@ jen.calculateAge();
 console.log(john.lastName);
 console.log(mark.lastName);
 console.log(jen.lastName);
+
+//Object.create
+
+var personProto = {
+  calculateAge: function() {
+    console.log(2016 - this.yearOfBirth);
+  }
+};
+
+var john = Object.create(personProto);
+john.name = "John";
+john.yearOfBrith = 1990;
+john.job = "Teacher";
+
+var jane = Object.create(personProto,
+{
+    name: { value: "Jane" },
+    yearOfBirth: { value: 1969 },
+    job: { value: "Designer" }
+});
+
+//The difference between Object.create and Function constructor is that Object.create builds an object that inherits directly from the one that we passed into the first argument
+//While with the function constructor, the newly created object inherits from the constructor's prototype property.
