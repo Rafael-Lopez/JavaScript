@@ -85,3 +85,25 @@ var fullAges = arrayCalc(years, isFullAge);
 
 console.log(ages);
 console.log(fullAges);
+
+// **** Functions returning functions ****
+
+function interviewQuestion(job) {
+    if (job === "Designer") {
+        return function(name) {
+            console.log(name + ", can you explain what UX design is?");
+        }
+    } else if (job === "Teacher") {
+        return function(name) {
+            console.log("What subject do you teach, " + name + "?");
+        }
+    }
+}
+
+var teacherQuestion = interviewQuestion("Teacher");
+teacherQuestion("John");
+var designerQuestion = interviewQuestion("Designer");
+designerQuestion("John");
+
+interviewQuestion("Teacher")("John");
+interviewQuestion("Designer")("John");
