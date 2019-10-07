@@ -108,7 +108,7 @@ designerQuestion("John");
 interviewQuestion("Teacher")("John");
 interviewQuestion("Designer")("John");
 
-//Immediately Invoked Function Expressions (IIFE). AKA Annonymus functions
+// **** Immediately Invoked Function Expressions (IIFE). AKA Annonymus functions ****
 
 function game() {
     var score = Math.random() * 10;
@@ -119,3 +119,34 @@ function game() {
     var score = Math.random() * 10;
     console.log(score >= 5);
 })();
+
+// **** Closures ****
+// An inner function has always access to the variables and parameters of its outer function, even after the outer function has returned 
+function retirement(retirementAge) {
+    var a = " years left until retirement";
+    
+    return function(yearOfBirth) {
+        var age = 2016 - yearOfBirth;
+        console.log( (retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+var retirementGermany = retirement(65);
+retirementUS(1990);
+retirementGermany(1990);
+
+//Another example
+
+function interviewQuestion(job) {
+    return function(name) {
+        if (job === "Designer") {
+            console.log(name + ", can you explain what UX design is?");
+        }
+        else if (job === "Teacher") {
+            console.log("What subject do you teach, " + name + "?");
+        }
+    }
+}
+
+interviewQuestion("Teacher")("John");
