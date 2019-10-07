@@ -107,3 +107,15 @@ designerQuestion("John");
 
 interviewQuestion("Teacher")("John");
 interviewQuestion("Designer")("John");
+
+//Immediately Invoked Function Expressions (IIFE). AKA Annonymus functions
+
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+
+(function () {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
