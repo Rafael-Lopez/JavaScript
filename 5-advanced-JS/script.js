@@ -150,3 +150,35 @@ function interviewQuestion(job) {
 }
 
 interviewQuestion("Teacher")("John");
+
+// **** Bind, Call and Apply ****
+
+var john = {
+    name: "John",
+    age: 26,
+    job: "Teacher",
+    presentation: function(style, time) {
+        if(style === "formal") {
+            console.log("Hello, I am " + this.name + " and I am " + this.age + " years old.");
+        } else {
+            console.log("Hi, I am " + this.name + " and I am " + this.age );
+        }
+    }
+};
+
+var emily = {
+    name: "Emily",
+    age: 35,
+    job: "Designer"
+};
+
+john.presentation("formal", "morning");
+
+john.presentation.call(emily, "friendly", "night"); //Call allows to call a method defined in another object, and set the 'this' variable to the first argument
+
+//john.presentation.apply(emily, ["friendly", "night"]); //Apply doeds the same as Call, except that it takes an array for the parameters. It's commented out because the presnetation() method doesn't take an array
+
+var johnFriendly = john.presentation.bind(john, "friendly"); //Bind returns a function, so you need to store it in a variable. Bind allows to pre-set some arguments
+johnFriendly("morning");
+var emilyFormal = john.presentation.bind(emily, "formal");
+emilyFormal("morning");
