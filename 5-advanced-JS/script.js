@@ -182,3 +182,79 @@ var johnFriendly = john.presentation.bind(john, "friendly"); //Bind returns a fu
 johnFriendly("morning");
 var emilyFormal = john.presentation.bind(emily, "formal");
 emilyFormal("morning");
+
+// *********************************
+//          CODING CHALLENGE
+// *********************************
+
+(function() {
+    function Question(question, answers, correctAnswer) {
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+        this.validateAnswer = function(answer) {
+            return answer === this.correctAnswer;
+        };
+    };
+
+    Question.prototype.display = function() {
+        console.log(this.question);  
+        for(i = 0; i < this.answers.length; i++) {
+            console.log( i + ".- " + this.answers[i]);  
+        }
+    }
+
+    Question.prototype.checkAnswer = function(answer, callback) {
+        var sc;
+        
+        if( answer === this.correctAnswer ) {
+            console.log("Correct!");
+            sc = callback(true);
+        } else {
+            console.log("Wrong!");
+            sc = callback(false);
+        }
+        
+        this.displayScore(sc);
+    }
+    
+    Question.prototype.displayScore = function(score) {
+        console.log("Your current score is: " + score);
+    }
+
+
+    var questionA = new Question("Is JavaScript the coolest programming langauge in the world?", ["Yes", "No"], 0);
+    var questionB = new Question("Is Ottawa the capital of Canada?", ["No", "Yes"], 1);
+    var questionC = new Question("Which one is the best season?", ["Spring", "Summer", "Fall", "Winter"], 3);
+
+    var questions = [questionA, questionB, questionC];
+    
+    function score() {
+        var sc = 0;
+        return function(correct) {
+            if(correct) {
+                sc++;
+            }
+            
+            return sc;
+        }
+    }
+    
+    var keepScore = score();
+
+    function nextQuestion() {
+        var index = Math.floor( (Math.random() * questions.length) );
+        var question = questions[index];
+
+        question.display(); 
+
+        var answer = prompt("Choose an answer","");
+
+        if( answer !== "exit") {
+            question.checkAnswer( parseInt(answer), keepScore ); 
+            nextQuestion();
+        }
+    }
+    
+    nextQuestion();
+})();
