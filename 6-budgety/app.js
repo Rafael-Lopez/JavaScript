@@ -65,7 +65,9 @@ var UIController = (function() {
         inputType: ".add__type",
         inputDescription: ".add__description",
         inputValue: ".add__value",
-        addButton: ".add__btn"
+        addButton: ".add__btn",
+        incomeContainer: ".income__list",
+        expensesContainer: ".expenses__list"
     };
     
     return {
@@ -79,6 +81,34 @@ var UIController = (function() {
         }, 
         getDOMstrings: function() {
             return DOMstrings;
+        }, 
+        addListItem: function(item, type) {
+            
+            var html, newHtml, element;
+            
+            //Create HTMl string with placeholder text
+            //HTML grabbed from the html file provided with this lab
+            if (type === "inc") {
+                html = '<div class="item clearfix" id="income-%id%"> <div class="item__description">%description%</div>' +
+                '<div class="right clearfix"><div class="item__value">%value%</div>' +
+                '<div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>' +
+                '</div></div></div>';
+                element = DOMstrings.incomeContainer;
+            } else if (type === "exp") {
+                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div>' +
+                '<div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div>' +
+                '<div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>' +
+                '</div></div></div>';
+                element = DOMstrings.expensesContainer;
+            }
+                    
+            //Replace palceholder text with some actual data
+            newHtml = html.replace("%id%", item.id);
+            newHtml = newHtml.replace("%value%", item.value);
+            newHtml = newHtml.replace("%description%", item.description);
+            
+            //Insert HTML into the DOM
+            document.querySelector(element).insertAdjacentHTML("beforeend", newHtml);
         }
     };
     
@@ -111,6 +141,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         
         // 2. Add the item to the budget controller 
         newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+        
+        // 3. Add the item to the UI
+        UICtrl.addListItem(newItem, input.type);
         
     };
     
