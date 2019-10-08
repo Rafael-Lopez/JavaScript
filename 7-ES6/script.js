@@ -1,8 +1,8 @@
 // ******  ES6  ******
 
 // In ES6, use let and const instead of var
-let age = 23;
-const = yearOfBirth = 1996;
+let age6 = 23;
+const yearOfBirth6 = 1996;
 
 // let and const have block scope (code between { and })
 // var has function scope
@@ -26,3 +26,28 @@ const = yearOfBirth = 1996;
     let b = 2;
 }
 
+/*
+    ***** Strings *****
+*/
+
+let firstName = 'John';
+let lastname = 'Smith';
+const yearOfBirth = 1998;
+
+function calcAge(year) {
+    return 2016 - year;
+}
+
+// In ES5
+console.log('This is ' + firstName + ' ' + lastname + '. He was born in ' + yearOfBirth + '. Today, he is ' + calcAge(yearOfBirth) + ' years old.');
+
+// In ES6
+// Template literals: string literals that allow embedded expressions using backticks
+console.log(`This is ${firstName} ${lastname}. He was born in ${yearOfBirth}. Today he is ${calcAge(yearOfBirth)} years old. `);
+
+
+const n = `${firstName} ${lastname}`;
+console.log(n.startsWith('J'));
+console.log(n.endsWith('h'));
+console.log(n.includes(' '));
+console.log(firstName.repeat(5));
