@@ -231,3 +231,37 @@ console.log(ages[full.indexOf(true)]);
 // ES6
 console.log(ages.findIndex( current => current >= 18 ));
 console.log(ages.find( current => current >= 18 ));
+
+
+
+
+/*
+    ***** Spread operators *****
+*/
+
+function addFourAges(a, b, c ,d) {
+    return a + b + c +d;
+}
+
+console.log(addFourAges(18, 30, 12, 21));
+
+// ES5
+var ages = [18, 30, 12, 21];
+console.log(addFourAges.apply( null, ages));
+
+// ES6
+console.log(addFourAges(...ages));
+
+
+
+const familySmith = ['John', 'Jane', 'Mark'];
+const familyMiller = ['Mary', 'Bob', 'Ann'];
+const bigFamily = [...familySmith, ...familyMiller];
+console.log(bigFamily);
+
+
+
+const h = document.querySelector('h1');
+const boxesA = document.querySelectorAll('.box');
+const all = [h, ...boxesA];
+Array.from(all).forEach( current => current.style.color = 'purple');
