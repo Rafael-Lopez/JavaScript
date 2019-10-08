@@ -299,3 +299,41 @@ function isFullAge6(limit, ...years) {
 }
 
 isFullAge6(18, 1990, 1999, 1965);
+
+
+
+
+
+/*
+    ***** Default parameters *****
+*/
+
+// ES5
+function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+    this.firstName = firstName;
+    
+    lastName === undefined ? lastName ='Smith' : lastName = lastName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    
+    nationality === undefined ? nationality ='American' : nationality = nationality;
+    this.nationality = nationality;
+}
+
+//JavaScript allows you to pass only the parameters you want. The rest is set to Undefined
+var john = new SmithPerson('John', 1990);
+
+console.log(john);
+
+// ES6
+function SmithPerson6(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+
+//JavaScript allows you to pass only the parameters you want. The rest is set to Undefined
+const johnA = new SmithPerson6('John', 1990);
+
+console.log(johnA);
