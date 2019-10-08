@@ -51,3 +51,31 @@ console.log(n.startsWith('J'));
 console.log(n.endsWith('h'));
 console.log(n.includes(' '));
 console.log(firstName.repeat(5));
+
+/*
+    ***** Arrow Functions *****
+*/
+
+const years = [1990, 1965, 1992, 1937];
+
+// ES5
+var ages5 = years.map( function(current) {
+    return 2019 - current;
+});
+console.log(ages5);
+
+// ES6
+let ages6 = years.map( current => 2019 - current);
+console.log(ages6);
+
+// Need parenthesis if more than one argument
+ages6 = years.map( (current, index) => `Age element ${index + 1}: ${2019-current}.`);
+console.log(ages6);
+
+// Need curly braces if more than one line of code in the body, and return keyword
+ages6 = years.map( (current, index) => {
+    const now = new Date().getFullYear();
+    const age = now - current;
+    return `Age element ${index + 1}: ${age}.`;
+});
+console.log(ages6);
