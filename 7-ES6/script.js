@@ -30,7 +30,7 @@ const yearOfBirth6 = 1996;
     ***** Strings *****
 */
 
-let firstName = 'John';
+/*let firstName = 'John';
 let lastname = 'Smith';
 const yearOfBirth = 1998;
 
@@ -50,7 +50,7 @@ const n = `${firstName} ${lastname}`;
 console.log(n.startsWith('J'));
 console.log(n.endsWith('h'));
 console.log(n.includes(' '));
-console.log(firstName.repeat(5));
+console.log(firstName.repeat(5));*/
 
 /*
     ***** Arrow Functions *****
@@ -139,3 +139,40 @@ Person.prototype.myFriends6 = function() {
 
 let friends6 = ['Bob', 'Jane', 'Mark'];
 new Person('John').myFriends6(friends6);
+
+
+/*
+    ***** Destructuring *****
+*/
+
+// ES5
+var john = ['John', 26];
+var name = john[0];
+var age = john[1];
+
+// ES6
+const [name6, age66] = ['John', 26];
+console.log(name6, age66);
+
+const obj = {
+    firstName: 'John',
+    lastName: 'Smith'
+};
+
+//const names have to match the property names
+const {firstName, lastName} = obj;
+console.log(firstName, lastName);
+
+//or you can do this instead
+const {firstName: a, lastName: b} = obj;
+console.log(firstName, lastName);
+
+
+
+function calcAgeRetirement(year) {
+    const age2 = new Date().getFullYear() - year;
+    return [age2, 62 - age2];
+}
+
+const[age2, retirement] = calcAgeRetirement(1990);
+console.log(age2, retirement);
