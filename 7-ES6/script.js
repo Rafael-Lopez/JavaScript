@@ -237,6 +237,7 @@ console.log(ages.find( current => current >= 18 ));
 
 /*
     ***** Spread operators *****
+    Takes an array and transforms it into single values
 */
 
 function addFourAges(a, b, c ,d) {
@@ -265,3 +266,36 @@ const h = document.querySelector('h1');
 const boxesA = document.querySelectorAll('.box');
 const all = [h, ...boxesA];
 Array.from(all).forEach( current => current.style.color = 'purple');
+
+
+
+
+/*
+    ***** Rest parameters *****
+    Receives a couple of single values, and transforms them into an array when we call a function with multiple parameters
+*/
+
+// ES5
+function isFullAge5() {
+    // arguments: a special variable we have access to in all functions
+    // an array-like structure. But not really an array
+    console.log(arguments);
+    
+    var argsArr = Array.prototype.slice.call(arguments);
+    
+    argsArr.forEach( function(current) {
+        console.log( (2016 - current) >= 18);
+    });
+}
+
+isFullAge5(1990, 1999, 1965);
+
+
+// ES6 
+function isFullAge6(limit, ...years) {
+    console.log(years);
+    
+    years.forEach( current => console.log( (2016 - current) >= limit) );
+}
+
+isFullAge6(18, 1990, 1999, 1965);
