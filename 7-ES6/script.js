@@ -475,3 +475,64 @@ class Athlete6 extends Person6 {
 const johnA6 = new Athlete6('John', 1990, 'Swimmer', 3, 10); 
 johnA5.calculateAge();
 johnA5.wonMedal();
+
+
+
+
+
+/*
+    ***** Coding Challenge 8 *****
+*/
+
+class CityElement {
+    constructor(name, buildYear) {
+        this.name = name;
+        this.buildYear = buildYear;
+    }
+    
+    getName() {
+        return this.name;
+    }
+}
+
+class Tree extends CityElement {
+    constructor(name, buildYear, numberOfTrees, area) {
+        super(name, buildYear);
+        this.numberOfTrees = numberOfTrees;
+        this.area = area;
+    }
+    
+    calculateDensity() {
+        return this.numberOfTrees / this.area;
+    }
+    
+    calculateAge() {
+        return new Date().getFullYear() - this.buildYear;
+    }
+}
+
+const cityA = new Map();
+cityA.set( 1, new Tree('Park A', 2000, 4000, 400) );
+cityA.set( 2, new Tree('Park B', 1990, 900, 300) );
+cityA.set( 3, new Tree('Park C', 1950, 10000, 700) );
+
+cityA.forEach( current => console.log( `${current.getName()} has a tree density of ${current.calculateDensity()} per square km` ) );
+
+let totalAges = 0
+
+for(let [key, value] of cityA.entries()) {  
+    const age = value.calculateAge();
+    totalAges += age;  
+}
+
+const avgAge = totalAges / cityA.size;
+
+console.log(`Our ${cityA.size} parks have an average age of ${avgAge} years`);
+
+cityA.forEach( current => {
+    if(current.numberOfTrees > 1000) {
+        console.log( `${current.getName()} has more than 1000 trees` );
+    }
+});
+
+
