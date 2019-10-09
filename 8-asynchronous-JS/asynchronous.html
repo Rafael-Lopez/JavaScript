@@ -145,6 +145,24 @@
             });
         }
         
+        //getWeather(2487956);
+        //getWeather(44418);
+        
+        
+        
+        
+        // Including try catch to handle errors. This is standard JS, not specific to Async/Await
+        async function getWeatherAW(woeid) {
+            try {
+                const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`);
+                const data = await result.json();
+                const today = data.consolidated_weather[0];
+                console.log(`Temperature in ${data.title} stay between ${today.min_temp} and ${today.max_temp}`);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
         getWeather(2487956);
         getWeather(44418);
              
