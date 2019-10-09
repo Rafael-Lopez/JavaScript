@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"  
   },
   "author": "Rafael Lopez",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {}
 }
