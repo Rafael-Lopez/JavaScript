@@ -26,7 +26,7 @@
         
         first();*/
         
-        function getRecipe() {
+        /*function getRecipe() {
             setTimeout( () => {
                 const recipeID = [523, 883, 432, 974];
                 
@@ -50,7 +50,58 @@
             }, 1500)
         }
         
-        getRecipe();
+        getRecipe();*/
+        
+        // Same as above, but using ES6 Promises
+        
+        const getIds = new Promise( (resolve, reject) => {
+            setTimeout( () => {
+                resolve([523, 883, 432, 974] );
+                // or reject([523, 883, 432, 974] ); in which case it will indicate to JS that the promise was rejected, and you can catch this later using the catch method
+            }, 1000);
+        } );
+        
+        const getRecipe = recID => {
+            return new Promise( (resolve, reject) => {
+                setTimeout( (id) => {
+                    const recipe = { 
+                        title: 'Fresh tomato pasta',
+                        publisher: 'Jonas'
+                    };
+                    resolve(`${id}: ${recipe.title}`);
+                }, 1500, recID);
+            });
+        };
+        
+        const getRelated = publisher => {
+            return new Promise( (resolve, reject) => {
+                setTimeout( pub => {
+                    const recipe2 = { 
+                        title: 'Italian Pizza',
+                        publisher: 'Jonas'
+                    };
+                    resolve(`${pub}: ${recipe2.title}`);
+                }, 1500, publisher);
+            });
+        };
+        
+        // IDs is the result produced by the resolve method if the promise is successful
+        getIds
+        .then( IDs => {
+            console.log(IDs);
+            return getRecipe(IDs[2]);
+        })
+        .then( recipe => {
+            console.log(recipe); 
+            return getRelated('Jonas');
+        })
+        .then( recipe => {
+            console.log(recipe);
+        })
+        .catch( error => {
+            console.log('Error');
+            console.log(error);
+        });
              
     </script>
 </body>
