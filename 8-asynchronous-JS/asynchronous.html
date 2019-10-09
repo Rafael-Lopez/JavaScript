@@ -86,7 +86,7 @@
         };
         
         // IDs is the result produced by the resolve method if the promise is successful
-        getIds
+        /*getIds
         .then( IDs => {
             console.log(IDs);
             return getRecipe(IDs[2]);
@@ -101,6 +101,30 @@
         .catch( error => {
             console.log('Error');
             console.log(error);
+        });*/
+        
+        
+        // 1. Same as above, but easier by using Async/Await to consume promises. If you want to produce promises, you still do it the same way
+        // 2. async functions run asynchronously in the background, so tehy don't block the main application
+        // 3. await expressions can only be used in async functions. away expressions block the code at that point, until the promise is resolved. This is why await can only be used in async functions
+        //    since those run in the background
+        async function getRecipesAW() {
+            const Ids = await getIds;
+            console.log(Ids);
+            const recipe = await getRecipe([2]);
+            console.log(recipe);
+            const related = await getRelated('Jonas');
+            console.log(related);
+            
+            return recipe;
+        }
+        
+        const recipe = getRecipesAW();
+        console.log(recipe); // This doesn't work because this code runs synchronously, while the getRecipesAW function runs asynchronously. So the result is Pending
+        
+        //Instead of the above, you can use the then() method since the getRecipesAW returns a promise
+        getRecipesAW().then( result => {
+            console.log(result);
         });
              
     </script>
