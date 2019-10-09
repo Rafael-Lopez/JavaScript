@@ -382,7 +382,7 @@ console.log( question.get(ans === question.get('correct')) );
 
 
 /*
-    ***** CLasses *****
+    ***** Classes *****
 */
 
 // ES5
@@ -427,3 +427,51 @@ const peter6 = new Person6('Peter', 1990, 'teacher');
 peter6.calculateAge();
 
 Person6.greeting();
+
+
+
+
+
+/*
+    ***** Subclasses *****
+*/
+
+// ES5
+
+var Athlete5 = function(name, yearOfBirth, job, olympicGames, medals) {
+    Person5.call( this, name, yearOfBirth, job);
+    this.olympicGames = olympicGames;
+    this.medals = medals;
+}
+
+Athlete5.prototype = Object.create(Person5.prototype);
+
+Athlete5.prototype.wonMedal = function() {
+    this.medals++;
+    console.log(this.medals);
+};
+
+var johnA5 = new Athlete5('John', 1990, 'Swimmer', 3, 10); 
+console.log(johnA5);
+
+johnA5.calculateAge();
+johnA5.wonMedal();
+
+// ES6
+
+class Athlete6 extends Person6 {
+    constructor(name, yearOfBirth, job, olympicGames, medals) {
+        super(name, yearOfBirth, job);
+        this.olympicGames = olympicGames;
+        this.medals = medals;
+    }
+    
+    wondMedal() {
+        this.medals++;
+        console.log(this.medals);
+    }
+}
+
+const johnA6 = new Athlete6('John', 1990, 'Swimmer', 3, 10); 
+johnA5.calculateAge();
+johnA5.wonMedal();
